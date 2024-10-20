@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        background-image: url("Imagery/apples.gif");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    #loginForm {
+        width: 100%;
+        max-width: 800px; /* Slightly larger form */
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /* Additional styling as needed */
+</style>
+<script>
+    const correctUsername = 'myusername';
+    const correctPassword = 'mypassword';
+    let loginAttempts = 0;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const enteredUsername = document.getElementById('username').value;
+            const enteredPassword = document.getElementById('password').value;
+
+            if (enteredUsername === correctUsername && enteredPassword === correctPassword && enteredPassword.length >= 8) {
+                window.location.href = 'Products.html'; // Redirect on successful login
+            } else {
+                loginAttempts++;
+                if (loginAttempts >= 3) {
+                    window.location.href = 'error.html';
+                } else {
+                    alert('Incorrect login details. Please try again.');
+                }
+            }
+        });
+    });
+</script>
+<body>
+    <form id="loginForm">
+        <img src="Imagery/Ky's Fruit Basket.png" width="40%" height="40%" class="center" alt="Ky's Fruit Basket">
+        <fieldset align="center">
+            <legend style="color: darkgreen; font-size: 24px;" align="left">Login</legend>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" required><br><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" required><br><br>
+            <input type="submit" value="Log In"><br><br>
+        </fieldset>
+    </form>
+</body>
